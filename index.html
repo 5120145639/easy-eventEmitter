@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>EventEmitter</title>
+    <script src="./easy-eventEmitter.js"></script>
+</head>
+<body>
+    <script>
+        function event1(name, age) {
+            console.log(`name1=${name}, age=${age}`)
+        }
+        function event2(name, age) {
+            console.log(`name2=${name}, age=${age}`)
+        }
+        function event3(name, age) {
+            console.log(`name3=${name}, age=${age}`)
+        }
+        let Event = new EventEmitter()
+        Event.on('add', event1).once('add', event2).on('add', event3)
+        Event.emit('add', '李白', '20')
+        // name1=李白, age=20
+        // name2=李白, age=20
+        Event.remove('add', event1)
+        // name2=李白, age=20
+        Event.remove('add')
+        // 空
+    </script>
+</body>
+</html>
